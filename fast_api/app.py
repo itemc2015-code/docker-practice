@@ -18,3 +18,19 @@ def add(adduser:Users):
         raise HTTPException(400,detail='Already exist')
     users.append(adduser)
     return {'message':'successfully added'}
+
+@app.post('/update_user')
+def update(updateuser:Users):
+    # match_id = [u for u in users if u.id == updateuser.id]
+    # match_id = next((u for u in users if u.id == updateuser.id),None)
+    for u in users:
+        if updateuser.id == u.id:
+            u.id = updateuser.id
+            u.name = updateuser.name
+            u.email = updateuser.email
+            u.password = updateuser.password
+            return {'message': 'update succefully'}
+
+    raise HTTPException(404, detail='user not exist')
+
+

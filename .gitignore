@@ -2,3 +2,4 @@
 
 .venv
 .idea/
+fast_api/__pycache__/
