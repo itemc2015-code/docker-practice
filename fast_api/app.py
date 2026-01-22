@@ -21,8 +21,6 @@ def add(adduser:Users):
 
 @app.post('/update_user')
 def update(updateuser:Users):
-    # match_id = [u for u in users if u.id == updateuser.id]
-    # match_id = next((u for u in users if u.id == updateuser.id),None)
     for u in users:
         if updateuser.id == u.id:
             u.id = updateuser.id
@@ -30,7 +28,14 @@ def update(updateuser:Users):
             u.email = updateuser.email
             u.password = updateuser.password
             return {'message': 'update succefully'}
-
     raise HTTPException(404, detail='user not exist')
 
+@app.post('/delete_user')
+def delete(userid:Users):
+    for u in users:
+        if userid.id == u.id:
+            users.remove(u)
+            return {'message': 'delete successfully'}
+
+    raise HTTPException(404,detail='user not found')
 
