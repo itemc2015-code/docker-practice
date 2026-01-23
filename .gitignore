@@ -3,3 +3,4 @@
 .venv
 .idea/
 fast_api/__pycache__/
+*.pyc
