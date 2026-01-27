@@ -4,3 +4,4 @@
 .idea/
 fast_api/__pycache__/
 *.pyc
+flask_api/.env
