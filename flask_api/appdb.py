@@ -43,6 +43,13 @@ class Users:
         db.commit()
         dbcursor.close()
 
+    def delete(self,id):
+        db.ping(reconnect=True)
+        dbcursor = db.cursor(dictionary=True,buffered=True)
+        querry = 'delete from users where id = %s'
+        dbcursor.execute(querry,(id,))
+        db.commit()
+        dbcursor.close()
 
 
 

@@ -42,5 +42,20 @@ def update_user():
     user_instance.update(name,email,id)
     return jsonify({'message':'update successfully'}),200
 
+@app.route('/deleteuser',methods=['DELETE'])
+def delete_user():
+    data = request.get_json()
+    id = data['id']
+    # name = data['name']
+    # email = data['email']
+
+    viewusers = user_instance.view()
+    if_match = next((v for v in viewusers if id == v['id']),None)
+
+    if if_match:
+        user_instance.delete(id)
+        return jsonify({'message':'successfully deleted'})
+    return jsonify({'message':'Not found'}),404
+
 if __name__ == '__main__':
     app.run(debug=True,host='0.0.0.0',port=5000)
